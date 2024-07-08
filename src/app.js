@@ -4,6 +4,7 @@ import "./style.css";
 
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
+import { Button } from "bootstrap";
 /*
  */
 
@@ -11,9 +12,9 @@ function generandoPosicionesAleatorias(a) {
   return Math.floor(Math.random() * a);
 }
 
-let insertarDatosNumericos = document.getElementById("numero");
 let insertarDatosPalo1 = document.getElementById("palo1");
 let insertarDatosPalo2 = document.getElementById("palo2");
+let insertarDatosNumericos = document.getElementById("numero");
 
 let arrayPalos = ["♦", "♥", "♠", "♣"];
 let arrayNumeros = [
@@ -31,34 +32,39 @@ let arrayNumeros = [
   "12"
 ];
 
-function randomCardGenerator() {
-  function generandoAleatorizacion(b) {
-    let posicionAleatoria = generandoPosicionesAleatorias(b);
-    return posicionAleatoria;
-  }
-  function insertarDatos() {
-    insertarDatosPalo1.innerHTML = arrayPalos[generandoAleatorizacion(4)];
-    insertarDatosPalo2.innerHTML = insertarDatosPalo1.innerHTML;
-    insertarDatosNumericos.innerHTML =
-      arrayNumeros[generandoAleatorizacion(12)];
-  }
+function randomCardGenerator(b) {
+  let posicionAleatoria = generandoPosicionesAleatorias(b);
+  return posicionAleatoria;
 }
 
-window.onload = function() {
-  //write your code here
-
-  setInterval(myTimer, 1000);
-  function myTimer() {
-    const d = new Date();
-    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
-  }
-
+function insertarDatos() {
+  insertarDatosPalo1.innerHTML = arrayPalos[randomCardGenerator(4)];
+  insertarDatosPalo2.innerHTML = insertarDatosPalo1.innerHTML;
+  insertarDatosNumericos.innerHTML = arrayNumeros[randomCardGenerator(12)];
   if (
     insertarDatosPalo1.innerHTML == "♦" ||
-    insertarDatosPalo2.innerHTML == "♥"
+    insertarDatosPalo1.innerHTML == "♥"
   ) {
     document.getElementById("palo1").style.color = "red";
     document.getElementById("numero").style.color = "red";
     document.getElementById("palo2").style.color = "red";
   }
+  if (
+    insertarDatosPalo1.innerHTML == "♠" ||
+    insertarDatosPalo1.innerHTML == "♣"
+  ) {
+    document.getElementById("palo1").style.color = "black";
+    document.getElementById("numero").style.color = "black";
+    document.getElementById("palo2").style.color = "black";
+  }
+}
+
+document
+  .getElementById("botonGeneradorNuevaCarta")
+  .addEventListener("click", insertarDatos);
+
+window.onload = function() {
+  //write your code here
+  insertarDatos();
+  setInterval(insertarDatos, 10000);
 };

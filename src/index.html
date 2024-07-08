@@ -51,13 +51,34 @@
           Botón para generar otra carta
         </h3>
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button class="btn" type="button" style="background: #FFCC00;">
+          <button
+            id="botonGeneradorNuevaCarta"
+            class="btn"
+            type="button"
+            style="background: #FFCC00;"
+          >
             Clica aquí y genera una nueva carta!
           </button>
         </div>
         <div>
-          <p>Temporizador</p>
-          <p id="demo"></p>
+          <form>
+            <label for="widthCard" style="color: #FAF5E9;">Width:</label><br />
+            <input
+              type="number"
+              id="widthCard"
+              name="widthCard"
+              value="350px"
+            /><br />
+            <label for="heightCard" style="color: #FAF5E9;">Height:</label
+            ><br />
+            <input
+              type="number"
+              id="heightCard"
+              name="heightCard"
+              value="550px"
+            /><br /><br />
+            <input type="submit" value="Submit" />
+          </form>
         </div>
       </div>
     </div>
